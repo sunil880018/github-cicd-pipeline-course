@@ -1,0 +1,40 @@
+1. To create the folder structure, run the command below inside the root of your project directory
+
+i)mkdir .github/
+ii)mkdir .github/workflows/
+
+2.create our workflow files inside the workflows folder, this file should be a yml file.
+the name of this file is up to you, you can give this file any name but just make sure that it ends with .yml
+
+  i) touch .github/workflows/ci.yml
+
+3.Open the ci.yml file and paste the code snippet below
+
+name: CI  # This is just specifying a name for the workflow
+
+on: [push] # on command is used to specify an event that will trigger the workflow, this event can be push, pull_request, etc.
+           # In our case, we are simply saying trigger this workflow on every push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest  # The runs-on is specifying the OS you want your workflow to run on and we are using the latest version of ubuntu
+    
+    steps:  # Github has some already define Actions, we are using version 1 of the checkout action this is responsible for cloning the repo and checking into our project directory.
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+        
+ 
+4. Run the commands below to push your code to GitHub
+git add .
+git commit -m "Add workflow file"
+git push origin -u master
+
+
+
+        
